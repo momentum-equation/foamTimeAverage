@@ -35,12 +35,7 @@ Calculates the time average  of the specified volField over the specified time r
 \*---------------------------------------------------------------------------*/
 
 #include "fvCFD.H"
-
-template<class FieldType>
-bool headerChecker
-(
-    IOobject& fieldHeader
-);
+#include "in_out_helpers.H"
 
 template<class FieldType>
 void calcTimeAverage
@@ -52,12 +47,6 @@ void calcTimeAverage
     instantList& timeDirs,
     bool& done
 );
-
-// template<class FieldType>
-// word parseHeaderClassName
-// (
-//     IOobject& fieldHeader
-// );
 
 int main(int argc, char *argv[])
 {
@@ -120,17 +109,6 @@ int main(int argc, char *argv[])
     Info<< "End\n" << endl;
 
     return 0;
-}
-
-template<class FieldType>
-bool headerChecker
-(
-    IOobject& fieldHeader
-)
-{
-    bool check = false;
-    check = fieldHeader.typeHeaderOk<FieldType>(true);
-    return check;
 }
 
 template<class FieldType>
@@ -229,24 +207,5 @@ void calcTimeAverage
     }
 
 }
-
-// template<class FieldType>
-// word parseHeaderClassName
-// (
-//     IOobject& fieldHeader
-// );
-// {
-//     if(headerChecker<FieldType>(fieldHeader))
-//     {
-//         FieldType parseFile=FieldType(fieldHeader);
-//         word className = parseFile.lookup("class");
-//         return className;
-//     }
-//     else
-//     {
-//         Info << "Failed to load specified field file  "<< endl;
-//     }
-//
-// }
 
 // ************************************************************************* //
